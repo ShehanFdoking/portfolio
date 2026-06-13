@@ -1,0 +1,145 @@
+.current-status-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.status-detailed-card {
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    border-radius: 12px;
+    padding: 3rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 8px 16px rgba(0, 255, 0, 0.2);
+    border: 2px solid #00ff00;
+}
+
+.status-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.status-indicator-large {
+    width: 24px;
+    height: 24px;
+    background-color: #00ff00;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+    flex-shrink: 0;
+}
+
+.status-main-title {
+    font-size: 2.5rem;
+    color: #00ff00;
+    margin: 0;
+}
+
+.status-body {
+    color: #ffffff;
+}
+
+.status-main-description {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.status-meta {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.status-info-item {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.status-label {
+    color: #ff8c00;
+    font-weight: 600;
+}
+
+.status-value {
+    color: #ffffff;
+}
+
+.status-info-section {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 2.5rem;
+}
+
+.section-subtitle {
+    font-size: 2rem;
+    color: #000000;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section-subtitle::before {
+    content: '';
+    width: 4px;
+    height: 2rem;
+    background-color: #1e90ff;
+    border-radius: 2px;
+}
+
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.info-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.info-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+.info-card h4 {
+    font-size: 1.3rem;
+    color: #000000;
+    margin-bottom: 0.75rem;
+}
+
+.info-card p {
+    color: #555555;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .status-main-title {
+        font-size: 1.8rem;
+    }
+
+    .status-main-description {
+        font-size: 1.1rem;
+    }
+
+    .info-cards {
+        grid-template-columns: 1fr;
+    }
+}
