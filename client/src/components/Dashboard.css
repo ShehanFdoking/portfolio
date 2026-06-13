@@ -1,7 +1,6 @@
 .dashboard {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+    width: 100%;
+    padding: 0;
 }
 
 .loading {
@@ -14,16 +13,17 @@
 /* Hero Section */
 .hero-section {
     background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-    border-radius: 12px;
-    padding: 3rem;
-    margin-bottom: 3rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 4rem 3rem;
+    margin-bottom: 0;
+    width: 100%;
 }
 
 .hero-content {
     display: flex;
     gap: 3rem;
     align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .description-section {
@@ -107,9 +107,13 @@
 /* Status Section */
 .status-section {
     background-color: #f8f9fa;
-    border-radius: 12px;
-    padding: 2.5rem;
-    border: 2px solid #e0e0e0;
+    padding: 4rem 3rem;
+    width: 100%;
+}
+
+.status-section-inner {
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .section-title {

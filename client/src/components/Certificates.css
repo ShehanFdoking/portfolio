@@ -1,13 +1,53 @@
 .certificates-container {
-    max-width: 1200px;
+    width: 100%;
+    padding: 4rem 3rem;
+    background-color: #f8f9fa;
+    min-height: calc(100vh - 60px);
+}
+
+.certificates-inner {
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 2rem;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    color: #000000;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.page-title::before {
+    content: '';
+    width: 5px;
+    height: 2.5rem;
+    background-color: #00ff00;
+    border-radius: 3px;
+}
+
+.loading {
+    text-align: center;
+    padding: 4rem;
+    font-size: 1.5rem;
+    color: #00ff00;
 }
 
 .certificates-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 2rem;
+}
+
+.no-data {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    color: #666;
+    font-size: 1.2rem;
 }
 
 .certificate-card {

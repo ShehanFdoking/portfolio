@@ -73,17 +73,19 @@ const Dashboard = () => {
             </div>
 
             <div className="status-section">
-                <h2 className="section-title">Current Status</h2>
-                <div className="status-card">
-                    <div className="status-indicator"></div>
-                    <div className="status-content">
-                        <h3 className="status-title">{status?.status || 'Available for opportunities'}</h3>
-                        <p className="status-description">
-                            {status?.description || 'Currently open to new projects and collaborations.'}
-                        </p>
-                        <p className="status-updated">
-                            Last updated: {status?.updatedAt ? new Date(status.updatedAt).toLocaleDateString() : 'N/A'}
-                        </p>
+                <div className="status-section-inner">
+                    <h2 className="section-title">Current Status</h2>
+                    <div className="status-card">
+                        <div className="status-indicator"></div>
+                        <div className="status-content">
+                            <h3 className="status-title">{status?.status || 'Available for opportunities'}</h3>
+                            <p className="status-description">
+                                {status?.description || 'Currently open to new projects and collaborations.'}
+                            </p>
+                            <p className="status-updated">
+                                Last updated: {status?.updatedAt ? new Date(status.updatedAt).toLocaleDateString() : 'N/A'}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
