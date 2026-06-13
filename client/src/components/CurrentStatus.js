@@ -12,7 +12,7 @@ const CurrentStatus = () => {
 
     const fetchStatus = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/status');
+            const response = await axios.get('http://localhost:5001/api/status');
             setStatus(response.data);
             setLoading(false);
         } catch (error) {

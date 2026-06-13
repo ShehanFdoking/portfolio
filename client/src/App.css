@@ -5,13 +5,56 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background-color: #ffffff;
-  color: #000000;
+  color: #1a1a1a;
   overflow-x: hidden;
 }
 
 .App {
   min-height: 100vh;
   width: 100%;
+  background-color: #0a0a0a;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00C853;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00A843;
+}
+
+/* Selection */
+::selection {
+  background-color: #00C853;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: #00C853;
+  color: #ffffff;
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus Outline */
+*:focus-visible {
+  outline: 2px solid #00C853;
+  outline-offset: 2px;
 }

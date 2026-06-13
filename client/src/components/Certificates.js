@@ -12,7 +12,7 @@ const Certificates = () => {
 
     const fetchCertificates = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/certificates');
+            const response = await axios.get('http://localhost:5001/api/certificates');
             setCertificates(response.data);
             setLoading(false);
         } catch (error) {

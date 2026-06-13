@@ -220,3 +220,207 @@ Content-Type: application/json
 
 ## License
 MIT
+
+
+---
+
+## 🔐 Admin Features
+
+### Admin Login
+- **Access:** Click "Admin" link in the navbar or visit `/admin/login`
+- **Credentials:**
+  - Email: `fernandoshehan313@gmail.com`
+  - Password: `shehan123`
+
+### Admin Dashboard Features
+
+#### 1. Profile Management
+- Update name, title, and description
+- Add profile image URL
+- Manage social links (Email, LinkedIn, GitHub)
+
+#### 2. Projects Management
+- **Manual Entry:** Add projects with title, description, technologies, images, and links
+- **🤖 AI-Powered GitHub Importer:**
+  - Paste any GitHub repository URL
+  - Click "Analyze Repo"
+  - AI automatically generates:
+    - Project title
+    - Description
+    - Technologies used
+    - GitHub metrics (stars, forks, issues)
+    - Project rating (0-10)
+    - Difficulty level
+    - Skills demonstrated
+  - Review and edit auto-filled data
+  - Save to portfolio
+  
+  **Example:**
+  ```
+  Input: https://github.com/username/plastic-waste-management
+  Output: Auto-fills all project details with AI analysis
+  ```
+
+#### 3. Certificates Management
+- Add/Edit/Delete certificates
+- Track issuer, date, and credential URLs
+- Upload certificate images
+
+#### 4. Status Management
+- Update current availability status
+- Add detailed descriptions
+
+### AI Project Analyzer Features
+
+The AI analyzer evaluates repositories based on:
+- **GitHub Metrics:** Stars, forks, open issues
+- **Code Analysis:** Technologies, languages, structure
+- **README Quality:** Documentation completeness
+- **Project Rating:** Automated 0-10 scoring
+- **Difficulty Level:** Beginner, Intermediate, or Advanced
+- **Skills Detection:** Auto-identifies demonstrated skills
+
+**Technologies Detected:**
+- Frontend: React, Vue.js, Angular, Next.js
+- Backend: Node.js, Express.js, Python, Django
+- Database: MongoDB, PostgreSQL, MySQL
+- DevOps: Docker, Kubernetes, AWS, Azure
+- Auth: JWT, OAuth
+- And many more!
+
+## 🎨 Design Specifications
+
+### Color Palette
+- **Primary Colors:**
+  - Green: `#00ff00` (Highlights, accents)
+  - Black: `#000000` (Navbar, hero backgrounds)
+  - White: `#ffffff` (Text, cards)
+  
+- **Secondary Colors:**
+  - Blue: `#1e90ff` (Links, tech tags)
+  - Orange: `#ff8c00` (CTAs, admin elements)
+
+### Layout Features
+- Full-width sections matching navbar
+- Centered content (max-width: 1400px)
+- Responsive design for all devices
+- Smooth hover animations
+- Professional gradient backgrounds
+
+## 📡 API Endpoints
+
+### Authentication
+- `POST /api/auth/login` - Admin login
+
+### AI Analyzer
+- `POST /api/ai/analyze-repo` - Analyze GitHub repository
+  ```json
+  {
+    "repoUrl": "https://github.com/username/repo"
+  }
+  ```
+
+### Profile
+- `GET /api/profile` - Get profile
+- `POST /api/profile` - Create/Update profile
+
+### Projects
+- `GET /api/projects` - Get all projects
+- `POST /api/projects` - Create project
+- `PUT /api/projects/:id` - Update project
+- `DELETE /api/projects/:id` - Delete project
+
+### Certificates
+- `GET /api/certificates` - Get all certificates
+- `POST /api/certificates` - Create certificate
+- `PUT /api/certificates/:id` - Update certificate
+- `DELETE /api/certificates/:id` - Delete certificate
+
+### Status
+- `GET /api/status` - Get current status
+- `POST /api/status` - Update status
+
+## 🛠️ Technology Stack
+
+### Frontend
+- React 18
+- React Router DOM
+- Axios
+- CSS3 with modern layouts
+- Responsive design
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB with Mongoose
+- Axios (for GitHub API)
+- CORS enabled
+
+### APIs Used
+- GitHub REST API (for repository analysis)
+- Custom AI analysis logic
+
+## 🚀 Deployment Tips
+
+### Environment Variables
+Create a `.env` file:
+```env
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/portfolio
+```
+
+For production, use MongoDB Atlas:
+```env
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/portfolio
+```
+
+### Build for Production
+```bash
+cd client
+npm run build
+```
+
+### Serve Production Build
+```bash
+# In server.js, add:
+app.use(express.static(path.join(__dirname, 'client/build')));
+```
+
+## 🎯 Use Cases
+
+### For Developers
+- Showcase your portfolio professionally
+- Quick project imports from GitHub
+- Maintain certificates and achievements
+- Update availability status
+
+### For Recruiters/Visitors
+- View projects with detailed information
+- Check GitHub metrics (stars, forks)
+- Verify certificates
+- Contact through social links
+- See current availability
+
+## 🌟 Advanced Features Ideas
+
+### Future Enhancements
+1. **Image Upload:** Direct image uploads instead of URLs
+2. **Blog Section:** Write technical articles
+3. **Analytics:** Track portfolio visits
+4. **Contact Form:** Direct messaging
+5. **Theme Toggle:** Dark/Light mode
+6. **Resume Generator:** Auto-generate from portfolio data
+7. **SEO Optimization:** Meta tags and sitemap
+8. **Multi-language:** Support multiple languages
+
+## 🤝 Contributing
+
+This portfolio is designed as a personal project. Feel free to fork and customize for your own use!
+
+## 📄 License
+
+MIT License - Feel free to use this for your own portfolio!
+
+---
+
+**Built with 💚 by Shehan | Powered by AI**

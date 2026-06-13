@@ -32,6 +32,13 @@ const Navbar = () => {
                 >
                     Current Status
                 </Link>
+                <Link
+                    to="/admin/login"
+                    className="nav-link admin-link"
+                    style={{ marginLeft: 'auto', color: '#ff8c00' }}
+                >
+                    🔐 Admin
+                </Link>
             </div>
         </nav>
     );
