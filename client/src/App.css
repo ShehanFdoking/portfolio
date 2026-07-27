@@ -1,3 +1,16 @@
+/* Custom Blue & Green Theme */
+:root {
+  --primary-blue: #133f79;
+  --primary-blue-dark: #0d2d57;
+  --accent-green: #24a513;
+  --accent-green-dark: #1d8510;
+  --slate-gray: #F8FAFC;
+  --white: #ffffff;
+  --text-dark: #133f79;
+  --text-light: #64748B;
+  --border: #E2E8F0;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,15 +21,31 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #ffffff;
-  color: #1a1a1a;
+  background-color: var(--slate-gray);
+  color: var(--text-dark);
   overflow-x: hidden;
+}
+
+/* Custom Cursor */
+* {
+  cursor: auto;
+}
+
+button,
+a,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select {
+  cursor: pointer;
 }
 
 .App {
   min-height: 100vh;
   width: 100%;
-  background-color: #0a0a0a;
+  background-color: var(--slate-gray);
+  cursor: none;
 }
 
 /* Scrollbar Styling */
@@ -25,27 +54,27 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: var(--slate-gray);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #00C853;
+  background: var(--accent-green);
   border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00A843;
+  background: var(--accent-green-dark);
 }
 
 /* Selection */
 ::selection {
-  background-color: #00C853;
-  color: #ffffff;
+  background-color: var(--accent-green);
+  color: var(--white);
 }
 
 ::-moz-selection {
-  background-color: #00C853;
-  color: #ffffff;
+  background-color: var(--accent-green);
+  color: var(--white);
 }
 
 /* Smooth Scroll */
@@ -55,6 +84,6 @@ html {
 
 /* Focus Outline */
 *:focus-visible {
-  outline: 2px solid #00C853;
+  outline: 2px solid var(--accent-green);
   outline-offset: 2px;
 }

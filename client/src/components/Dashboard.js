@@ -155,13 +155,13 @@ const Dashboard = () => {
                             <h3>📋 Portfolio Completeness</h3>
                             <div className="circular-progress">
                                 <svg viewBox="0 0 100 100">
-                                    <circle cx="50" cy="50" r="45" fill="none" stroke="#e0e0e0" strokeWidth="8" />
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="var(--grey-light)" strokeWidth="8" />
                                     <circle
                                         cx="50"
                                         cy="50"
                                         r="45"
                                         fill="none"
-                                        stroke="#00ff00"
+                                        stroke="var(--green-light)"
                                         strokeWidth="8"
                                         strokeDasharray={`${2 * Math.PI * 45}`}
                                         strokeDashoffset={`${2 * Math.PI * 45 * (1 - analytics.overview.portfolioCompleteness / 100)}`}

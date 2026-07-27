@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard';
 import Projects from './components/Projects';
 import Certificates from './components/Certificates';
 import CurrentStatus from './components/CurrentStatus';
+import Contact from './components/Contact';
 import AdminLogin from './components/AdminLogin';
 import AdminDashboard from './components/AdminDashboard';
 import './App.css';
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/certificates" element={<Certificates />} />
                 <Route path="/current-status" element={<CurrentStatus />} />
+                <Route path="/contact" element={<Contact />} />
               </Routes>
             </>
           } />

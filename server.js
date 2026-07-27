@@ -34,6 +34,7 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/ai', require('./routes/ai-analyzer'));
 app.use('/api/upload', require('./routes/upload'));
 app.use('/api/analytics', require('./routes/analytics'));
+app.use('/api/contact', require('./routes/contact'));
 
 // Test route
 app.get('/api/test', (req, res) => {
