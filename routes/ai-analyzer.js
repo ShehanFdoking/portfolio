@@ -7,22 +7,40 @@ router.post('/analyze-repo', async (req, res) => {
     try {
         const { repoUrl } = req.body;
 
+        if (!repoUrl) {
+            return res.status(400).json({
+                success: false,
+                message: 'Repository URL is required'
+            });
+        }
+
         console.log('Analyzing repository:', repoUrl);
 
         // Parse GitHub URL - handle various formats
         let cleanUrl = repoUrl.trim();
+
+        // Remove common URL prefixes
         cleanUrl = cleanUrl.replace('https://github.com/', '');
         cleanUrl = cleanUrl.replace('http://github.com/', '');
+        cleanUrl = cleanUrl.replace('github.com/', '');
         cleanUrl = cleanUrl.replace('.git', '');
         cleanUrl = cleanUrl.replace(/\/$/, ''); // Remove trailing slash
 
-        const urlParts = cleanUrl.split('/');
+        const urlParts = cleanUrl.split('/').filter(part => part.length > 0);
+
+        if (urlParts.length < 2) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid GitHub URL format. Use: https://github.com/username/repository'
+            });
+        }
+
         const owner = urlParts[0];
         const repo = urlParts[1];
 
-        console.log('Owner:', owner, 'Repo:', repo);
+        console.log('Parsed - Owner:', owner, 'Repo:', repo);
 
-        if (!owner || !repo) {
+        if (!owner || !repo || owner.includes(' ') || repo.includes(' ')) {
             return res.status(400).json({
                 success: false,
                 message: 'Invalid GitHub URL format. Use: https://github.com/username/repository'
@@ -42,12 +60,18 @@ router.post('/analyze-repo', async (req, res) => {
                     'Accept': 'application/vnd.github.v3.raw',
                     'User-Agent': 'Portfolio-App'
                 }
-            }).catch(() => ({ data: '' })),
+            }).catch(err => {
+                console.log('README not found or accessible:', err.message);
+                return { data: '' };
+            }),
             axios.get(`https://api.github.com/repos/${owner}/${repo}/languages`, {
                 headers: {
                     'Accept': 'application/vnd.github.v3+json',
                     'User-Agent': 'Portfolio-App'
                 }
+            }).catch(err => {
+                console.log('Languages data not found:', err.message);
+                return { data: {} };
             })
         ]);
 
@@ -66,23 +90,34 @@ router.post('/analyze-repo', async (req, res) => {
         });
     } catch (err) {
         console.error('Error analyzing repository:', err.message);
-        console.error('Error details:', err.response?.data);
+        console.error('Error stack:', err.stack);
+        console.error('Error response:', err.response?.data);
+        console.error('Error status:', err.response?.status);
 
         let errorMessage = 'Failed to analyze repository. ';
+        let statusCode = 500;
 
         if (err.response?.status === 404) {
             errorMessage += 'Repository not found. Please check the URL.';
+            statusCode = 404;
         } else if (err.response?.status === 403) {
             errorMessage += 'GitHub API rate limit exceeded. Try again later.';
+            statusCode = 429;
         } else if (err.response?.status === 401) {
             errorMessage += 'Authentication failed.';
+            statusCode = 401;
         } else {
             errorMessage += 'Please check the URL and try again.';
+            // Include actual error message for debugging
+            if (process.env.NODE_ENV !== 'production') {
+                errorMessage += ` Error: ${err.message}`;
+            }
         }
 
-        res.status(500).json({
+        res.status(statusCode).json({
             success: false,
-            message: errorMessage
+            message: errorMessage,
+            error: process.env.NODE_ENV !== 'production' ? err.message : undefined
         });
     }
 });
