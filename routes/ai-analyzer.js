@@ -2,6 +2,15 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 
+// Test endpoint to verify the route is working
+router.get('/test', (req, res) => {
+    res.json({
+        success: true,
+        message: 'AI Analyzer route is working',
+        timestamp: new Date().toISOString()
+    });
+});
+
 // Analyze GitHub repository
 router.post('/analyze-repo', async (req, res) => {
     try {

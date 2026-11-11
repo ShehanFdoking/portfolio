@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Dashboard.css';
+import { getImageUrl } from '../utils/imageUrl';
 
 const Dashboard = () => {
     const [profile, setProfile] = useState(null);
@@ -68,7 +69,7 @@ const Dashboard = () => {
                     <div className="profile-image-section">
                         <div className="profile-image-container">
                             {profile?.imageUrl ? (
-                                <img src={profile.imageUrl} alt="Profile" className="profile-image" />
+                                <img src={getImageUrl(profile.imageUrl)} alt="Profile" className="profile-image" />
                             ) : (
                                 <div className="profile-placeholder">
                                     <span>Your Photo</span>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Manager.css';
+import { getImageUrl } from '../../utils/imageUrl';
 
 const ProfileManager = ({ profile, onUpdate }) => {
     const [formData, setFormData] = useState({
@@ -26,7 +27,7 @@ const ProfileManager = ({ profile, onUpdate }) => {
                 linkedin: profile.linkedin || '',
                 github: profile.github || ''
             });
-            setImagePreview(profile.imageUrl || '');
+            setImagePreview(getImageUrl(profile.imageUrl));
         }
     }, [profile]);
 
@@ -160,7 +161,7 @@ const ProfileManager = ({ profile, onUpdate }) => {
                         <div style={{ marginBottom: '1rem', textAlign: 'center' }}>
                             <p style={{ marginBottom: '0.5rem', fontWeight: 600 }}>Preview:</p>
                             <img
-                                src={imagePreview}
+                                src={getImageUrl(imagePreview)}
                                 alt="Preview"
                                 style={{
                                     width: '200px',
