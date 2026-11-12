@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../../config';
 import './Manager.css';
-import { getImageUrl } from '../../utils/imageUrl';
 
 const ProfileManager = ({ profile, onUpdate }) => {
     const [formData, setFormData] = useState({
@@ -27,7 +27,7 @@ const ProfileManager = ({ profile, onUpdate }) => {
                 linkedin: profile.linkedin || '',
                 github: profile.github || ''
             });
-            setImagePreview(getImageUrl(profile.imageUrl));
+            setImagePreview(profile.imageUrl || '');
         }
     }, [profile]);
 
@@ -46,14 +46,14 @@ const ProfileManager = ({ profile, onUpdate }) => {
         formDataObj.append('image', file);
 
         try {
-            const response = await axios.post('http://localhost:5001/api/upload/image', formDataObj, {
+            const response = await axios.post(`${API_URL}/api/upload/image`, formDataObj, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
 
             if (response.data.success) {
-                const imageUrl = `http://localhost:5001${response.data.imageUrl}`;
+                const imageUrl = `${API_URL}${response.data.imageUrl}`;
                 setFormData({ ...formData, imageUrl });
                 setImagePreview(imageUrl);
                 alert('✅ Image uploaded successfully!');
@@ -68,7 +68,7 @@ const ProfileManager = ({ profile, onUpdate }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5001/api/profile', formData);
+            await axios.post(`${API_URL}/api/profile`, formData);
             alert('Profile updated successfully!');
             onUpdate();
         } catch (error) {
@@ -161,7 +161,7 @@ const ProfileManager = ({ profile, onUpdate }) => {
                         <div style={{ marginBottom: '1rem', textAlign: 'center' }}>
                             <p style={{ marginBottom: '0.5rem', fontWeight: 600 }}>Preview:</p>
                             <img
-                                src={getImageUrl(imagePreview)}
+                                src={imagePreview}
                                 alt="Preview"
                                 style={{
                                     width: '200px',

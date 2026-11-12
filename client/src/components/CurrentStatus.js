@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../config';
 import './CurrentStatus.css';
 
 const CurrentStatus = () => {
@@ -12,7 +13,7 @@ const CurrentStatus = () => {
 
     const fetchStatus = async () => {
         try {
-            const response = await axios.get('http://localhost:5001/api/status');
+            const response = await axios.get(`${API_URL}/api/status`);
             setStatus(response.data);
             setLoading(false);
         } catch (error) {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import API_URL from '../../config';
 import './Manager.css';
 
 const CertificatesManager = ({ certificates, onUpdate }) => {
@@ -17,10 +18,10 @@ const CertificatesManager = ({ certificates, onUpdate }) => {
         e.preventDefault();
         try {
             if (editingId) {
-                await axios.put(`http://localhost:5001/api/certificates/${editingId}`, formData);
+                await axios.put(`${API_URL}/api/certificates/${editingId}`, formData);
                 alert('Certificate updated successfully!');
             } else {
-                await axios.post('http://localhost:5001/api/certificates', formData);
+                await axios.post(`${API_URL}/api/certificates`, formData);
                 alert('Certificate added successfully!');
             }
 
@@ -34,7 +35,7 @@ const CertificatesManager = ({ certificates, onUpdate }) => {
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this certificate?')) {
             try {
-                await axios.delete(`http://localhost:5001/api/certificates/${id}`);
+                await axios.delete(`${API_URL}/api/certificates/${id}`);
                 alert('Certificate deleted successfully!');
                 onUpdate();
             } catch (error) {

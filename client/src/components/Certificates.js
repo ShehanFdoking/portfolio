@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../config';
 import './Certificates.css';
 
 const Certificates = () => {
@@ -12,7 +13,7 @@ const Certificates = () => {
 
     const fetchCertificates = async () => {
         try {
-            const response = await axios.get('http://localhost:5001/api/certificates');
+            const response = await axios.get(`${API_URL}/api/certificates`);
             setCertificates(response.data);
             setLoading(false);
         } catch (error) {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../../config';
 import './Manager.css';
 
 const StatusManager = ({ status, onUpdate }) => {
@@ -20,7 +21,7 @@ const StatusManager = ({ status, onUpdate }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5001/api/status', formData);
+            await axios.post(`${API_URL}/api/status`, formData);
             alert('Status updated successfully!');
             onUpdate();
         } catch (error) {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import API_URL from '../config';
 import ProfileManager from './managers/ProfileManager';
 import ProjectsManager from './managers/ProjectsManager';
 import CertificatesManager from './managers/CertificatesManager';
@@ -29,10 +30,10 @@ const AdminDashboard = () => {
     const fetchData = async () => {
         try {
             const [profileRes, projectsRes, certificatesRes, statusRes] = await Promise.all([
-                axios.get('http://localhost:5001/api/profile'),
-                axios.get('http://localhost:5001/api/projects'),
-                axios.get('http://localhost:5001/api/certificates'),
-                axios.get('http://localhost:5001/api/status')
+                axios.get(`${API_URL}/api/profile`),
+                axios.get(`${API_URL}/api/projects`),
+                axios.get(`${API_URL}/api/certificates`),
+                axios.get(`${API_URL}/api/status`)
             ]);
 
             setProfile(profileRes.data || {});

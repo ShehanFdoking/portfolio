@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import API_URL from '../../config';
 import './Manager.css';
 
 const ProjectsManager = ({ projects, onUpdate }) => {
@@ -25,7 +26,7 @@ const ProjectsManager = ({ projects, onUpdate }) => {
 
         setAnalyzing(true);
         try {
-            const response = await axios.post('http://localhost:5001/api/ai/analyze-repo', {
+            const response = await axios.post(`${API_URL}/api/ai/analyze-repo`, {
                 repoUrl: githubUrl
             });
 
@@ -61,10 +62,10 @@ const ProjectsManager = ({ projects, onUpdate }) => {
             };
 
             if (editingId) {
-                await axios.put(`http://localhost:5001/api/projects/${editingId}`, dataToSend);
+                await axios.put(`${API_URL}/api/projects/${editingId}`, dataToSend);
                 alert('Project updated successfully!');
             } else {
-                await axios.post('http://localhost:5001/api/projects', dataToSend);
+                await axios.post(`${API_URL}/api/projects`, dataToSend);
                 alert('Project added successfully!');
             }
 
@@ -78,7 +79,7 @@ const ProjectsManager = ({ projects, onUpdate }) => {
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this project?')) {
             try {
-                await axios.delete(`http://localhost:5001/api/projects/${id}`);
+                await axios.delete(`${API_URL}/api/projects/${id}`);
                 alert('Project deleted successfully!');
                 onUpdate();
             } catch (error) {

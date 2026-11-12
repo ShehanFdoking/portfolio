@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Dashboard.css';
+import API_URL from '../config';
 import { getImageUrl } from '../utils/imageUrl';
+import './Dashboard.css';
 
 const Dashboard = () => {
     const [profile, setProfile] = useState(null);
@@ -19,9 +20,9 @@ const Dashboard = () => {
     const fetchData = async () => {
         try {
             const [profileRes, statusRes, analyticsRes] = await Promise.all([
-                axios.get('http://localhost:5001/api/profile'),
-                axios.get('http://localhost:5001/api/status'),
-                axios.get('http://localhost:5001/api/analytics/dashboard')
+                axios.get(`${API_URL}/api/profile`),
+                axios.get(`${API_URL}/api/status`),
+                axios.get(`${API_URL}/api/analytics/dashboard`)
             ]);
             setProfile(profileRes.data);
             setStatus(statusRes.data);
