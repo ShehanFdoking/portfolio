@@ -4,22 +4,14 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-// Create uploads directory if it doesn't exist
 const uploadDir = path.join(__dirname, '../uploads');
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
 }
 
-// Configure multer for file upload
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, uploadDir);
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, 'image-' + uniqueSuffix + path.extname(file.originalname));
-    }
-});
+// Keep uploaded data in memory so it can be persisted in MongoDB by the
+// profile update request instead of relying on ephemeral server storage.
+const storage = multer.memoryStorage();
 
 const upload = multer({
     storage: storage,
@@ -47,13 +39,12 @@ router.post('/image', upload.single('image'), (req, res) => {
             return res.status(400).json({ success: false, message: 'No file uploaded' });
         }
 
-        const imageUrl = `/uploads/${req.file.filename}`;
+        const imageUrl = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
 
         res.json({
             success: true,
             message: 'Image uploaded successfully',
-            imageUrl: imageUrl,
-            filename: req.file.filename
+            imageUrl
         });
     } catch (error) {
         console.error('Upload error:', error);

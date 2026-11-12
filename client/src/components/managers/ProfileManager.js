@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_URL from '../../config';
+import { getImageUrl } from '../../utils/imageUrl';
 import './Manager.css';
 
 const ProfileManager = ({ profile, onUpdate }) => {
@@ -53,7 +54,7 @@ const ProfileManager = ({ profile, onUpdate }) => {
             });
 
             if (response.data.success) {
-                const imageUrl = `${API_URL}${response.data.imageUrl}`;
+                const imageUrl = getImageUrl(response.data.imageUrl);
                 setFormData({ ...formData, imageUrl });
                 setImagePreview(imageUrl);
                 alert('✅ Image uploaded successfully!');
