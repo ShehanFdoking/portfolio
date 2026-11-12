@@ -9,6 +9,7 @@ const Dashboard = () => {
     const [status, setStatus] = useState(null);
     const [analytics, setAnalytics] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [imageFailed, setImageFailed] = useState(false);
 
     useEffect(() => {
         fetchData();
@@ -25,6 +26,7 @@ const Dashboard = () => {
                 axios.get(`${API_URL}/api/analytics/dashboard`)
             ]);
             setProfile(profileRes.data);
+            setImageFailed(false);
             setStatus(statusRes.data);
             setAnalytics(analyticsRes.data.data);
             setLoading(false);
@@ -69,11 +71,16 @@ const Dashboard = () => {
                     </div>
                     <div className="profile-image-section">
                         <div className="profile-image-container">
-                            {profile?.imageUrl ? (
-                                <img src={getImageUrl(profile.imageUrl)} alt="Profile" className="profile-image" />
+                            {profile?.imageUrl && !imageFailed ? (
+                                <img
+                                    src={getImageUrl(profile.imageUrl)}
+                                    alt="Profile"
+                                    className="profile-image"
+                                    onError={() => setImageFailed(true)}
+                                />
                             ) : (
                                 <div className="profile-placeholder">
-                                    <span>Your Photo</span>
+                                    <span>Photo coming soon</span>
                                 </div>
                             )}
                         </div>
